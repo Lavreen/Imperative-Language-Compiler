@@ -25,11 +25,79 @@ Running the compiled program on the VM:
 # Example programs
 Binary search for finding square root:
 ```
+# ? 225
+# > 15
 
+PROCEDURE sqrt(num) IS
+	end, start, mid, guess, check, i
+IN
+    end := num / 2;
+    end := end + 1;
+	start := 1;
+
+    i := 0;
+    IF num > 1 THEN
+        REPEAT
+            i := i + 1;
+            mid := end + start;
+            mid := mid / 2;
+            guess := mid * mid;
+            
+            IF guess > num THEN
+                end := mid;
+            ENDIF
+            IF guess < num THEN
+                start := mid;
+            ENDIF
+            IF i > 70 THEN
+                guess := num;
+            ENDIF
+        UNTIL guess = num; 
+    ELSE
+        IF num = 1 THEN
+            mid := 1;
+        ENDIF
+    ENDIF
+	num := mid;
+END	
+
+PROGRAM IS
+	i, j
+IN
+	READ i;
+	sqrt(i);
+	WRITE i;
+END
 ```
 
 Factorial + Fibonacci:
 ```
+# ? 20
+# > 2432902008176640000
+# > 6765
+
+PROGRAM IS
+    f[100], s[100], i[100], n, j, k, l
+IN
+    READ n;
+    f[0] := 0;
+    s[0] := 1;
+    i[0] := 0;
+    f[1] := 1;
+    s[1] := 1;
+    i[1] := 1;
+    j := 2;
+    WHILE j <= n DO
+        k := j - 1;
+        l := k - 1;
+    i[j] := i[k] + 1;
+    f[j] := f[k] + f[l];
+        s[j] := s[k] * i[j];
+        j:=j+1;
+    ENDWHILE
+    WRITE s[n];
+    WRITE f[n];
+END
 
 ```
 
